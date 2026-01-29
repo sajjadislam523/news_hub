@@ -43,7 +43,7 @@ const PaginationController = ({
                                     page === pageNumber
                                         ? "bg-white text-black hover:bg-white"
                                         : "text-white hover:bg-white/10"
-                                }`}
+                                } `}
                                 isActive={page === pageNumber}
                                 onClick={() => setPage(pageNumber)}
                             >
