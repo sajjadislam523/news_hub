@@ -11,9 +11,11 @@ export interface News {
     };
 }
 
-export interface NewsResponse {
-    status: string;
+export interface PaginatedNewsResponse {
+    page: number;
+    pageSize: number;
     totalResults: number;
+    totalPages: number;
     articles: News[];
 }
 

@@ -6,7 +6,7 @@ const HeroSection = () => {
     const words1 = ["Global", "Live", "Accurate", "Trusted", "Real-Time"];
 
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-black">
+        <section className="relative h-screen w-full overflow-hidden">
             {/* Background Light Rays */}
             <LightRays
                 raysOrigin="top-center"

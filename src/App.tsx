@@ -3,12 +3,12 @@ import NewsContainer from "@/components/NewsContainer";
 
 function App() {
     return (
-        <div className="mx-auto flex flex-col gap-5 m-h-screen w-full">
+        <div className="mx-auto flex flex-col m-h-screen w-full bg-black">
             <div className="relative w-full">
                 <HeroSection />
             </div>
 
-            <div className="relative w-full bg-background">
+            <div className="relative w-full">
                 <NewsContainer />
             </div>
         </div>

@@ -18,9 +18,9 @@ const NewsCard = ({ news }: { news: News }) => {
     };
 
     return (
-        <article className="group relative h-[420px] overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl">
-            {/* Background Image */}
-            <div className="absolute inset-0">
+        <article className="group relative h-112.5 overflow-hidden rounded-xl bg-zinc-900 border border-white/10 transition-all duration-300 hover:border-white/30 hover:shadow-2xl hover:shadow-white/10">
+            {/* Image Container */}
+            <div className="relative h-52 overflow-hidden">
                 <img
                     src={
                         news.urlToImage ||
@@ -30,62 +30,64 @@ const NewsCard = ({ news }: { news: News }) => {
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
-                {/* Dark Overlay - gets lighter on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40 transition-all duration-500 group-hover:from-black/80 group-hover:via-black/50 group-hover:to-black/30" />
-            </div>
-
-            {/* Content Container */}
-            <div className="relative flex h-full flex-col justify-between p-6">
-                {/* Top Section - Category Badge */}
-                <div className="flex items-start justify-between">
-                    <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md ring-1 ring-white/30 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500 group-hover:ring-0">
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center rounded-md bg-black/60 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-white border border-white/20">
                         {news.category}
                     </span>
                 </div>
 
-                {/* Bottom Section - Main Content */}
-                <div className="space-y-4">
-                    {/* Title */}
-                    <h3 className="text-2xl font-bold leading-tight text-white line-clamp-2 transition-all duration-300 group-hover:text-shadow-lg">
+                {/* linear Overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-transparent to-transparent" />
+            </div>
+
+            {/* Content Container */}
+            <div className="relative flex flex-col justify-between p-6 h-[calc(100%-13rem)]">
+                {/* Title & Description */}
+                <div className="space-y-3">
+                    <h3 className="text-lg font-bold leading-tight text-white line-clamp-2 group-hover:text-gray-100 transition-colors">
                         {news.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-sm leading-relaxed text-gray-200 line-clamp-2 transition-all duration-300 group-hover:text-white">
+                    <p className="text-sm leading-relaxed text-gray-400 line-clamp-2">
                         {news.description}
                     </p>
+                </div>
 
-                    {/* Footer */}
-                    <div className="flex items-center justify-between border-t border-white/20 pt-4">
+                {/* Footer */}
+                <div className="space-y-4 mt-4">
+                    {/* Divider */}
+                    <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+
+                    <div className="flex items-center justify-between">
+                        {/* Source Info */}
                         <div className="flex items-center gap-3">
-                            {/* Channel Avatar */}
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-sm font-bold text-white shadow-lg ring-2 ring-white/30 transition-all duration-300 group-hover:scale-110 group-hover:ring-white/50">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-bold text-black">
                                 {(news.source?.name || news.channelName)
                                     .charAt(0)
                                     .toUpperCase()}
                             </div>
 
-                            {/* Channel Info */}
                             <div className="flex flex-col">
-                                <span className="text-sm font-semibold text-white">
+                                <span className="text-sm font-medium text-white">
                                     {news.source?.name || news.channelName}
                                 </span>
-                                <span className="text-xs text-gray-300">
+                                <span className="text-xs text-gray-500">
                                     {formatDate(news.publishedAt)}
                                 </span>
                             </div>
                         </div>
 
-                        {/* Read More Button */}
+                        {/* Read Button */}
                         <a
                             href={news.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white shadow-lg backdrop-blur-sm ring-1 ring-white/30 transition-all duration-300 hover:bg-white hover:text-gray-900 hover:scale-105 hover:shadow-xl"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-gray-300 transition-colors group/btn"
                         >
                             Read
                             <svg
-                                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                                className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -101,10 +103,8 @@ const NewsCard = ({ news }: { news: News }) => {
                     </div>
                 </div>
             </div>
-
-            {/* Decorative Gradient Accent */}
-            <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 blur-3xl transition-all duration-700 group-hover:scale-[2] group-hover:opacity-80" />
         </article>
     );
 };
+
 export default NewsCard;
